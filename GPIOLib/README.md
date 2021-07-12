@@ -16,6 +16,11 @@ The library consists of a struct, 6 macros and 4 functions:
   * ***gpioSetDir(gpioSetType * gSet)***: it's the function to set a pin to input or output mode;
   * ***gpioGetDir(gpioSetType * gSet)***: it's the function to get a pin's mode;
 
+## Pinout Scheme ##
+<p align=center>
+    <img src="../design/pinout_rasp.png" width=400/>
+</p>
+
 ## How to ##
 ### "Write" to a pin ###
 ```c
@@ -34,5 +39,6 @@ gpioPin.val = PINMODE_IN;
 gpioSetDir(&gpioPin);
 int value = gpioGetVal(&gpioPin);
 ```
+
 ____
 This library is inspired by the gpiolib included in the examples of WindRiver's VxWorks SDK and modified by us according to our need.

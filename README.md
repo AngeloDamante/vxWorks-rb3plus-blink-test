@@ -6,14 +6,14 @@ You will need to SD card (>= 8 GB, FAT32), UART cable, Raspberry 3B+ and resisto
     <img src="design/raspLed.png" />
 </p>
 
-## Requirements
+### Requirements
 ```bash
 - python3
 - screen
 - pyftpdlib
 ```
 
-## Preparing
+### Preparing
 ```
 git clone https://github.com/AngeloDamante/vxWorks-rb3plus-blink-test.git
 cd vxWorks-rb3plus-blink-test
@@ -28,25 +28,27 @@ At this point, copy all files from SD_card directory to your partition of SD car
     ├── SD_card         # For Target
     ├── SDK             # For Host
     └── modules         # dkm files by user
-        ├── dkm.c
+    │   ├── dkm.c
+    │   └── ...
+    ├── GPIOLib         # library to interact to BUS
         ├── gpioLib.h
         └── gpioLib.c
 
 ```
 
-# Let's Develop!
+## Let's Develop!
 <p align=center>
     <img src="design/targetHost.png" width=400/>
 </p>
 
-## Host
+### Host
 The GPIOLib.h provides the library to interact to GPIO bus. Must build this library to obtain GPIOLib.o. The dkm.c is the DKM developed by the user.
 ```
 cd vxWorks-rb3plus-blink-test
 
 # Build modules
 source SDK/toolkit/wind_sdk_env.linux
-$CC -dkm modules/GPIOLib.c -o modules/GPIOLib.o
+$CC -dkm GPIOLib/GPIOLib.c -o modules/GPIOLib.o
 $CC -dkm modules/dkm.c -o modules/dkm.o
 
 # Start FTP Session
@@ -55,7 +57,7 @@ sudo python3 -m pyftpdlib -p 21 -u target -P vxTarget -d modules/ &
 
 Or, alternatively, is sufficient to #include `GPIOLib.h` in the `dkm.c`.
 
-## Target (Raspberry)
+### Target (Raspberry)
 With `lkup "gpio"` commands we can check the absence of gpio related methods in symbols' table before to load the `GPIOLib.o`
 ```
 -> netDevCreate("wrs", "192.168.1.11", 1)
