@@ -2,27 +2,27 @@
 
 #include "vxWorks.h"
 #include <unistd.h>
-#include "gpioLib.h"
+#include "GPIOLib.h"
 
 void start() {
-	struct gpioSetStruct gpioBus;
-	gpioBus.gpioNum = 16;
+	struct gpioSetStruct gpioPin;
+	gpioPin.gpioNum = 16;
 	
 	/* Setting up pin */
-	gpioBus.val = PINMODE_OUT;
-	gpioSetDir(&gpioBus);
+	gpioPin.val = PINMODE_OUT;
+	gpioSetDir(&gpioPin);
 	
 	for (int i = 0; i < 5; i++) {
 		/* turning on pin */
 		printf("\n\n On");
-		gpioBus.val = OUTMODE_HIGH;
-		gpioSetVal(&gpioBus);
+		gpioPin.val = OUTMODE_HIGH;
+		gpioSetVal(&gpioPin);
 		sleep(3);
 		
 		/* turning off pin */
 		printf("\n\n Off");
-		gpioBus.val = OUTMODE_LOW;
-		gpioSetVal(&gpioBus);
+		gpioPin.val = OUTMODE_LOW;
+		gpioSetVal(&gpioPin);
 		sleep(3);
 	}
 }
