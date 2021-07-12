@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <sysLib.h>
 #include <subsys/gpio/vxbGpioLib.h>
-#include "gpioLib.h"
+#include "GPIOLib.h"
 
 
 /*******************************************************************************
