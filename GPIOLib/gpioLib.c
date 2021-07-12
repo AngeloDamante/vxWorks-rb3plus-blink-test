@@ -1,12 +1,3 @@
-/* gpioLib.c - Library functions for basic GPIO manipulation in VxWorks */
-
-/*
- Copyright (c) 2019 Wind River Systems, Inc.
- The right to copy, distribute, modify or otherwise make use
- of this software may be licensed only pursuant to the terms
- of an applicable Wind River license agreement.
- */
-
 /*
  DESCRIPTION
 
