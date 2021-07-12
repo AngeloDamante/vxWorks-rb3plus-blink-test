@@ -2,9 +2,9 @@
 A simple script to blinking test for Raspberry Pi 3B+ on <a href="https://github.com/AngeloDamante/VxWorks_basics">VxWorks</a> RTOS. This project provides the development environment for writing DKM for VxWorks and interact with GPIO bus.
 
 You will need to SD card (>= 8 GB, FAT32), UART cable, Raspberry 3B+ and resistor (220 ohm).
-<center>
+<p align=center>
     <img src="design/raspLed.png" />
-</center>
+</p>
 
 ## Requirements
 ```bash
@@ -35,9 +35,9 @@ At this point, copy all files from SD_card directory to your partition of SD car
 ```
 
 # Let's Develop!
-<center>
+<p align=center>
     <img src="design/targetHost.png" width=400/>
-</center>
+</p>
 
 ## Host
 The gpioLib.h provides the library to interact to GPIO bus. Must build this library to obtain gpioLib.o. The dkm.c is the DKM developed by the user.
@@ -65,9 +65,9 @@ With lkup "gpio" commands, we can check the absence gpio methods in symbols' tab
 -> sp start 
 ```
 
-<center>
+<p align=center>
     <img src="design/led_test.gif" width=200/>
-</center>
+</p>
 
 
 
