@@ -54,8 +54,13 @@ $CC -dkm GPIOLib/GPIOLib.c modules/dkm.c -o modules/dkm.o
 sudo python3 -m pyftpdlib -p 21 -u target -P vxTarget -d modules/ &
 ```
 
+<b>Tips:</b> if you want dkm in cpp, not mix file.c and file.cpp, a good practice is to have only files in c or cpp.
+```
+cp GPIOLib/GPIOLib.c GPIOLib.cpp
+$CC -dkm GPIOLib/GPIOLib.cpp modules/dkm.cpp -o modules/dkm.o
+```
 ### Target (Raspberry)
-With `lkup "gpio"` commands we can check the absence of gpio related methods in symbols' table before to load the `GPIOLib.o`
+With `lkup "gpio"` commands we can check the absence of gpio related methods in symbols' table before to load the `dkm.o`
 ```
 -> netDevCreate("wrs", "192.168.1.11", 1)
 -> cmd
