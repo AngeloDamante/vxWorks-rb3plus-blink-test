@@ -48,14 +48,11 @@ cd vxWorks-rb3plus-blink-test
 
 # Build modules
 source SDK/toolkit/wind_sdk_env.linux
-$CC -dkm GPIOLib/GPIOLib.c -o modules/GPIOLib.o
-$CC -dkm modules/dkm.c -o modules/dkm.o
+$CC -dkm GPIOLib/GPIOLib.c modules/dkm.c -o modules/dkm.o
 
 # Start FTP Session
 sudo python3 -m pyftpdlib -p 21 -u target -P vxTarget -d modules/ &
 ```
-
-Or, alternatively, is sufficient to #include `GPIOLib.h` in the `dkm.c`.
 
 ### Target (Raspberry)
 With `lkup "gpio"` commands we can check the absence of gpio related methods in symbols' table before to load the `GPIOLib.o`
@@ -63,7 +60,6 @@ With `lkup "gpio"` commands we can check the absence of gpio related methods in 
 -> netDevCreate("wrs", "192.168.1.11", 1)
 -> cmd
 [vxWorks *]# cd wrs
-[vxWorks *]# ld "GPIOLib.o"
 [vxWorks *]# ld "dkm.o"
 [vxWorks *]# C
 -> sp start 
