@@ -2,27 +2,26 @@
 
 #include "vxWorks.h"
 #include <unistd.h>
-#include "GPIOLib.h"
+#include "../gpioLib/gpioLib.h"
+
+#define PIN 16
 
 void start() {
-	struct gpioSetStruct gpioPin;
-	gpioPin.gpioNum = 16;
-	
+
 	/* Setting up pin */
-	gpioPin.val = PINMODE_OUT;
-	gpioSetDir(&gpioPin);
+	pinMode(PIN, OUT)
 	
 	for (int i = 0; i < 5; i++) {
 		/* turning on pin */
 		printf("\n\n On");
-		gpioPin.val = OUTMODE_HIGH;
-		gpioSetVal(&gpioPin);
+		gpioWrite(PIN, HIGH)
 		sleep(3);
 		
 		/* turning off pin */
 		printf("\n\n Off");
-		gpioPin.val = OUTMODE_LOW;
-		gpioSetVal(&gpioPin);
+		gpioWrite(PIN, LOW)
 		sleep(3);
 	}
+
+	gpioFree(PIN)
 }

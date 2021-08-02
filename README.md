@@ -30,7 +30,7 @@ At this point, copy all files from SD_card directory to your partition of SD car
     └── modules         # dkm files by user
     │   ├── dkm.c
     │   └── ...
-    ├── GPIOLib         # library to interact to BUS
+    ├── gpioLib         # library to interact to BUS
         ├── gpioLib.h
         └── gpioLib.c
 
@@ -42,13 +42,13 @@ At this point, copy all files from SD_card directory to your partition of SD car
 </p>
 
 ### Host
-The GPIOLib.h provides the library to interact to GPIO bus. Must build this library to obtain GPIOLib.o. The dkm.c is the DKM developed by the user.
+The gpioLib.h provides the library to interact to GPIO bus. Must build this library to obtain gpioLib.o. The dkm.c is the DKM developed by the user.
 ```
 cd vxWorks-rb3plus-blink-test
 
 # Build modules
 source SDK/toolkit/wind_sdk_env.linux
-$CC -dkm GPIOLib/GPIOLib.c modules/dkm.c -o modules/dkm.o
+$CC -dkm gpioLib/gpioLib.c modules/dkm.c -o modules/dkm.o
 
 # Start FTP Session
 sudo python3 -m pyftpdlib -p 21 -u target -P vxTarget -d modules/ &
@@ -56,9 +56,10 @@ sudo python3 -m pyftpdlib -p 21 -u target -P vxTarget -d modules/ &
 
 <b>Tips:</b> if you want dkm in cpp, not mix file.c and file.cpp, a good practice is to have only files in c or cpp.
 ```
-cp GPIOLib/GPIOLib.c GPIOLib.cpp
-$CC -dkm GPIOLib/GPIOLib.cpp modules/dkm.cpp -o modules/dkm.o
+cp gpioLib/gpioLib.c gpioLib.cpp
+$CC -dkm gpioLib/gpioLib.cpp modules/dkm.cpp -o modules/dkm.o
 ```
+
 ### Target (Raspberry)
 With `lkup "gpio"` commands we can check the absence of gpio related methods in symbols' table before to load the `dkm.o`
 ```
@@ -69,6 +70,8 @@ With `lkup "gpio"` commands we can check the absence of gpio related methods in 
 [vxWorks *]# C
 -> sp start 
 ```
+
+with "192.168.1.11" as example of local HOST IP.
 
 <p align=center>
     <img src="design/led_test.gif" width=200/>
